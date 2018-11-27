@@ -38,7 +38,7 @@ Both functions return the same kind of random generator, which has the following
  - `r.util`: various utility functions, [see below](#utils)
  - `r.seed`: the numeric seed array (read-only, write is unsupported but technically possible)
 
-The string key is meant to be a static identifier of the value you expect from the generator. **Do not use dynamic "key" arguments, they can lead to a memory leak.** String literals or constants are recommended. Any dynamic change you need can be included in the numeric arguments following the key.
+The string key is meant to be a static identifier of the value you expect from the generator. **Do not use dynamic "key" arguments, they can lead to a memory leak** (because keys are cached indefinitely). String literals or constants are recommended. Any dynamic change you need can be included in the numeric arguments following the key.
 
 > Why? It's because murmur-random is optimized for speed. Previously, a very similar deterministic random generator was used in the [artgen project](https://github.com/b3nsn0w/artgen2), which showed that long strings like encoded JSON aren't sufficiently performant with a hash like murmur3
 
