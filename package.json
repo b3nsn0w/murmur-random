@@ -1,0 +1,25 @@
+{
+  "name": "murmur-random",
+  "version": "1.0.0",
+  "description": "Deterministic random generator powered by MurmurHash3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/b3nsn0w/murmur-random.git"
+  },
+  "keywords": [
+    "murmur",
+    "murmur3",
+    "random",
+    "procedural"
+  ],
+  "author": "Ben Snow <balintbence97@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/b3nsn0w/murmur-random/issues"
+  },
+  "homepage": "https://github.com/b3nsn0w/murmur-random#readme"
+}
