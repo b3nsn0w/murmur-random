@@ -26,8 +26,8 @@ const chance = (value, probability) => {
 
 const point = (value, min, max, ymin, ymax) => {
   return {
-    x: float(murmur(value, keygen('x')), min, max),
-    y: float(murmur(value, keygen('x')), ymin != null ? ymin : min, ymin != null ? ymax : max)
+    x: float(murmur([value, keygen('x')]), min, max),
+    y: float(murmur([value, keygen('y')]), ymin != null ? ymin : min, ymin != null ? ymax : max)
   }
 }
 
@@ -38,7 +38,7 @@ const pick = (value, array, amount) => {
   if (amount <= 1) return [currentPick]
 
   const arrayWithout = [...array.slice(0, index), ...array.slice(index + 1)]
-  return [currentPick, ...pick(murmur(value, keygen('nextPick')), arrayWithout, amount - 1)]
+  return [currentPick, ...pick(murmur([value, keygen('nextPick')]), arrayWithout, amount - 1)]
 }
 
 module.exports = {
