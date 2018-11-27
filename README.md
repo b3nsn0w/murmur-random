@@ -28,7 +28,7 @@ const cloned = murmurRandom.raw(seed) // you can save and restore generators wit
 
 The random generator of murmurRandom can be constructed with the exported function in two ways:
 
- - `murmurRandom(string)`: uses a string seed, and derives the numeric seed from it
+ - `murmurRandom(string, length = 4)`: uses a string seed, and derives the numeric seed from it, where `length` lets you configure the numeric seed length
  - `murmurRandom.raw(number[])`: uses the numeric seed directly
 
 Both functions return the same kind of random generator, which has the following properties:

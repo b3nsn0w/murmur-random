@@ -2,7 +2,7 @@ const murmur = require('./murmur')
 const keygen = require('./keygen')
 const util = require('./util')
 
-function createSeed (seed, length = 4) {
+function createSeed (seed, length) {
   const seedKey = Array.isArray(seed) ? seed : [keygen(seed, false)]
 
   return new Array(length).fill().map((v, i) => murmur([i, ...seedKey], true))
@@ -23,7 +23,7 @@ function random (seed) {
    */
 
   function subgen (key, ...params) {
-    return random(createSeed([...seed, keygen(key), ...params]))
+    return random(createSeed([...seed, keygen(key), ...params], seed.length))
   }
 
   /**
@@ -46,10 +46,11 @@ function random (seed) {
  * Creates a deterministic random generator
  *
  * @param {string} seed Seed of the random generator
+ * @param {number} length Length of the seed (defaults to 4)
  */
 
-function createRandom (seed) {
-  return random(createSeed(seed))
+function createRandom (seed, length = 4) {
+  return random(createSeed(seed, length))
 }
 
 module.exports = createRandom

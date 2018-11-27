@@ -1,6 +1,6 @@
 {
   "name": "murmur-random",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Deterministic random generator powered by MurmurHash3",
   "main": "index.js",
   "scripts": {
