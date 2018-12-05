@@ -1,16 +1,16 @@
-// Gary Court's code, with minimal modifications so that it works on a uint32array instead of a string
+// Gary Court's code, with minimal modifications so that it works on an array of 32-bit positive integers instead of a string
 
 /* eslint-disable */
 
 /**
- * JS Implementation of MurmurHash3 (r136) (as of May 20, 2011) (modified at Nov 26, 2018)
+ * JS Implementation of MurmurHash3 (r136) (as of May 20, 2011) (modified at Dec 05, 2018)
  * 
  * @author <a href="mailto:gary.court@gmail.com">Gary Court</a>
  * @see http://github.com/garycourt/murmurhash-js
  * @author <a href="mailto:aappleby@gmail.com">Austin Appleby</a>
  * @see http://sites.google.com/site/murmurhash/
  * 
- * @param {Uint32Array} key
+ * @param {number[]} key 32-bit positive integers only
  * @param {number} seed Positive integer only
  * @return {number} 32-bit positive integer hash 
  */
@@ -78,6 +78,14 @@ function murmurhash3_32_gc(key, seed) {
 
 const MAX_INT = Math.pow(2, 32)
 
+const buffer = new ArrayBuffer(4)
+const view = new DataView(buffer)
+
+const convert = value => {
+  view.setFloat32(0, value, true)
+  return view.getUint32(0, true)
+}
+
 /**
  * Deterministic Math.random() replacement with Murmur3
  *
@@ -87,7 +95,7 @@ const MAX_INT = Math.pow(2, 32)
  */
 
 module.exports = function murmur (numbers, raw = false) {
-  const converted = new Uint32Array(new Float32Array(numbers).buffer)
+  const converted = numbers.map(convert)
   const result = murmurhash3_32_gc(converted)
   return raw ? result : result / MAX_INT
 }
